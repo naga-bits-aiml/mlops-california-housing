@@ -10,15 +10,16 @@ def ensure_kaggle_credentials():
         kaggle_config_dir = '/home/runner/.config/kaggle'
     kaggle_json_path = os.path.join(kaggle_config_dir, 'kaggle.json')
 
+    # Otherwise, try to get from environment variables
+    username = os.environ.get('KAGGLE_USERNAME')
+    key = os.environ.get('KAGGLE_KEY')
+    print(f"Environment Variables found, KAGGLE_USERNAME:{username}, KAGGLE_KEY:{key}")
+
     # If kaggle.json exists, use it
     if os.path.exists(kaggle_json_path):
         os.environ['KAGGLE_CONFIG_DIR'] = kaggle_config_dir
         print(f"Found file {kaggle_json_path}")
         return
-
-    # Otherwise, try to get from environment variables
-    username = os.environ.get('KAGGLE_USERNAME')
-    key = os.environ.get('KAGGLE_KEY')
 
     if username and key:
         os.makedirs(kaggle_config_dir, exist_ok=True)
