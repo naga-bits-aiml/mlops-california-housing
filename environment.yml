@@ -8,6 +8,7 @@ dependencies:
   - mlflow
   - flask
   - dvc
+  - kaggle
   - pip
   - pip:
       - prometheus_client
