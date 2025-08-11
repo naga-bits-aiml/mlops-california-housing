@@ -1,6 +1,6 @@
 import os
 import json
-from kaggle.api.kaggle_api_extended import KaggleApi
+from kaggle import api
 
 def ensure_kaggle_credentials():
     # Use the default config path for Kaggle API in CI
@@ -33,8 +33,8 @@ def ensure_kaggle_credentials():
 
 def download_data():
     ensure_kaggle_credentials()
-    api = KaggleApi()
-    api.authenticate()
+    # api = KaggleApi()
+    # api.authenticate()
     api.dataset_download_files('camnugent/california-housing-prices', path='data', unzip=True)
 
 if __name__ == "__main__":
