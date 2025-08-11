@@ -1,0 +1,14 @@
+name: mlops-california-housing
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pandas
+  - scikit-learn
+  - mlflow
+  - flask
+  - dvc
+  - pip
+  - pip:
+      - prometheus_client
+
