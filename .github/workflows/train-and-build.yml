@@ -50,6 +50,13 @@ jobs:
         with:
           name: model-artifacts
 
+      - name: Test the API
+        shell: bash -l {0}
+        run: |
+          micromamba activate mlops-california-housing
+          python run_tests.py
+
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
