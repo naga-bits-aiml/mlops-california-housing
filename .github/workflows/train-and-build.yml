@@ -6,21 +6,34 @@ on:
       - main
 env:
   MLOPS: true
-  
-jobs:
-  train-and-model-build:
-    runs-on: ubuntu-latest
 
+jobs:
+  setup_environment:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Install micromamba
         uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: environment.yml
           environment-name: mlops-california-housing
           cache-environment: true
+      - name: Copy kaggle.json from repo
+        run: |
+          mkdir -p ~/.kaggle
+          cp kaggle.json ~/.kaggle/kaggle.json
+          chmod 600 ~/.kaggle/kaggle.json
+
+  train-and-model-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Activate micromamba environment
+        shell: bash -l {0}
+        run: micromamba activate mlops-california-housing
 
       - name: Train and register model
         shell: bash -l {0}
