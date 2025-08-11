@@ -69,15 +69,3 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/california-housing-api:latest
-
-      - name: Pull latest Docker image
-        run: |
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/california-housing-api:latest
-
-      - name: Stop running container if exists
-        run: |
-          docker ps -q --filter "name=california-housing-api" | grep -q . && docker stop california-housing-api && docker rm california-housing-api || echo "No running container to stop."
-
-      - name: Run latest container
-        run: |
-          docker run -d --name california-housing-api -p 5001:5001 ${{ secrets.DOCKERHUB_USERNAME }}/california-housing-api:latest
