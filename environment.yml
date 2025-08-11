@@ -9,6 +9,7 @@ dependencies:
   - flask
   - dvc
   - kaggle
+  - pytest
   - pip
   - pip:
       - prometheus_client
