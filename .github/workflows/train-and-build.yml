@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-
+env:
+  MLOPS: true
+  
 jobs:
   train-and-model-build:
     runs-on: ubuntu-latest
