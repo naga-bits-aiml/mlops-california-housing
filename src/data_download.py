@@ -32,7 +32,7 @@ def ensure_kaggle_credentials():
         raise RuntimeError("Kaggle credentials not found. Set KAGGLE_USERNAME and KAGGLE_KEY env vars or provide kaggle.json.")
 
 def download_data():
-    ensure_kaggle_credentials()
+    # ensure_kaggle_credentials()
     # api = KaggleApi()
     # api.authenticate()
     api.dataset_download_files('camnugent/california-housing-prices', path='data', unzip=True)
