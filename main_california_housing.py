@@ -6,6 +6,7 @@ from src.model_register import register_best_model
 import mlflow
 
 import json
+import os
 
 def main():
     print("Step 1: Downloading data from Kaggle...")
@@ -25,6 +26,7 @@ def main():
         "best_model": name,
         "version": version
     }
+    os.makedirs("./models", exist_ok=True)
     with open("./models/models.config", "w") as f:
         json.dump(config, f)
     print("Best model info saved to models.config.")
